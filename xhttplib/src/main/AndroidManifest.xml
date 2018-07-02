@@ -3,7 +3,6 @@
     package="com.zhxh.xhttplib">
 
     <application>
-        <activity android:name=".UpdateSoftDialogActivity"></activity>
         <service android:name=".UpdateSoftService" />
     </application>
 

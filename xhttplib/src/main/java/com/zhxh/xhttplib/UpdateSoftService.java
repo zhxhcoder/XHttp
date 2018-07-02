@@ -34,7 +34,7 @@ public class UpdateSoftService extends Service {
 
     private Intent updateIntent;
 
-    public static String downUrl = "";
+    public static String downUrl;
     public static boolean stopDownload;
 
     private final IBinder localBinder = new UpdateSoftService.LocalBinder();
@@ -66,9 +66,13 @@ public class UpdateSoftService extends Service {
     public int onStartCommand(Intent intent, int flags, int startId) {
         try {
 
+            String apkName = intent.getStringExtra("apkName");
+            downUrl = intent.getStringExtra("downUrl");
+            stopDownload = intent.getBooleanExtra("stopDownload", false);
+
             if (XTools.isSDCardMounted() && !TextUtils.isEmpty(downUrl)) {
 
-                updateFile = XTools.isStockInSDK("niuguwang.apk");
+                updateFile = XTools.isStockInSDK(intent.getStringExtra(apkName));
 
                 if (updateFile.exists()) {
 
@@ -80,7 +84,7 @@ public class UpdateSoftService extends Service {
                     }
                 }
 
-                updateIntent = new Intent(this, UpdateSoftDialogActivity.class);
+                updateIntent = new Intent(this, intent.getClass());
 
                 // 开启线程进行下载
                 new Thread(new UpdateSoftService.UpdateThread()).start();
