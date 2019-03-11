@@ -8,8 +8,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 
-import com.zhxh.xhttplib.UpdateSoftService;
-
 public class MainActivity extends AppCompatActivity {
 
     @Override
@@ -27,12 +25,12 @@ public class MainActivity extends AppCompatActivity {
                 //UpdateSoftService.downUrl = "http://download.niuguwang.com/files/apk/ngw/niuguwang3.8.9_niuguwang.apk";
                 //UpdateSoftService.stopDownload = false;
 
-                Intent intent = new Intent();
-                intent.putExtra("downUrl","http://download.niuguwang.com/files/apk/ngw/niuguwang3.8.9_niuguwang.apk");
-                intent.putExtra("stopDownload",false);
-                intent.putExtra("apkName","niuguwang.apk");
-                intent.setClass(MainActivity.this, UpdateSoftService.class);
-                startService(intent);
+                //Intent intent = new Intent();
+                //intent.putExtra("downUrl","http://download.niuguwang.com/files/apk/ngw/niuguwang3.8.9_niuguwang.apk");
+                //intent.putExtra("stopDownload",false);
+                //intent.putExtra("apkName","niuguwang.apk");
+                //intent.setClass(MainActivity.this, UpdateSoftService.class);
+                //startService(intent);
 
                 Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
