@@ -27,7 +27,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void request() {
 
-        Xhttp.sendJsonRequest(errorUrl, null, BaseResponse.class, new IJsonDataListener<BaseResponse>() {
+        Xhttp.sendJsonRequest(url, null, BaseResponse.class, new IJsonDataListener<BaseResponse>() {
             @Override
             public void onSuccess(BaseResponse o) {
                 content.setText(o.toString());
