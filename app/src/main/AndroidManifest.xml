@@ -9,6 +9,7 @@
     <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE" />
 
     <application
+        android:name=".BaseApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -29,7 +30,7 @@
         <receiver android:name="com.zhxh.xnetlib.NetStateReceiver">
 
             <intent-filter>
-                <action android:name="android.net.CONNECT_CHANGE"/>
+                <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
             </intent-filter>
 
         </receiver>

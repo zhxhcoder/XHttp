@@ -6,6 +6,6 @@ package com.zhxh.xnetlib.utlis;
 public class Constants {
 
     public static final String TAG = "xhttplib";
-    public static final String ANDROID_NET_CHANGE_ACTION = "android.net.CONNECT_CHANGE";
+    public static final String ANDROID_NET_CHANGE_ACTION = "android.net.conn.CONNECTIVITY_CHANGE";
 
 }

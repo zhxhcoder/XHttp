@@ -25,7 +25,7 @@ public class MainActivity extends AppCompatActivity implements NetworkListener {
         setContentView(R.layout.activity_main);
 
 
-        NetworkManager.getDefault().init(this.getApplication());
+        NetworkManager.getDefault().init(getApplication());
         NetworkManager.getDefault().setListener(this);
 
         content = findViewById(R.id.content);
@@ -57,6 +57,5 @@ public class MainActivity extends AppCompatActivity implements NetworkListener {
     @Override
     public void onDisConnect() {
         netState.append("连接失败\n");
-
     }
 }

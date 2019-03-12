@@ -52,7 +52,7 @@ public class NetworkManager {
     public Application getApplication() {
 
         if (application == null) {
-            new RuntimeException("未初始化");
+            throw new RuntimeException("未初始化");
         }
 
         return application;
