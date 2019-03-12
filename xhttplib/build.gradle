@@ -8,8 +8,8 @@ android {
     defaultConfig {
         minSdkVersion 16
         targetSdkVersion 27
-        versionCode 1
-        versionName "1.0"
+        versionCode 2
+        versionName "1.1"
     }
 
     buildTypes {
@@ -84,10 +84,10 @@ bintray {
         publish = true // 是否是公开项目。
 
         version {
-            name = '1.0'//版本号
+            name = '1.1'//版本号
             desc = 'XHttp,http toolkit for android development'//版本描述
             released = new Date()
-            vcsTag = 'v1.0'
+            vcsTag = 'v1.1'
             attributes = ['gradle-plugin': 'com.use.less:com.use.less.gradle:gradle-useless-plugin']
         }
     }
