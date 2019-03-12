@@ -1,7 +1,9 @@
 package com.zhxh.xnetlib;
 
 import android.app.Application;
+import android.content.Context;
 import android.net.ConnectivityManager;
+import android.net.NetworkRequest;
 import android.os.Build;
 
 public class NetworkManager {
@@ -31,6 +33,7 @@ public class NetworkManager {
 
     //广播初始化
 
+    @SuppressWarnings("MissingPermission")
     public void init(Application application) {
         this.application = application;
 
@@ -41,12 +44,16 @@ public class NetworkManager {
 
         //第二种方式监听，不通过广播
 
-        if (Build.VERSION.SDK_INT>=Build.VERSION_CODES.LOLLIPOP) {
-            ConnectivityManager.NetworkCallback networkCallback=new NetworkCallbackImpl();
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            ConnectivityManager.NetworkCallback networkCallback = new NetworkCallbackImpl();
 
+            NetworkRequest.Builder builder = new NetworkRequest.Builder();
+            NetworkRequest request = builder.build();
+            ConnectivityManager connectivityManager = (ConnectivityManager) NetworkManager.getDefault().getApplication().getSystemService(Context.CONNECTIVITY_SERVICE);
+            if (connectivityManager != null) {
+                connectivityManager.registerNetworkCallback(request, networkCallback);
+            }
         }
-
-
     }
 
 
