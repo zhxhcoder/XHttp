@@ -70,6 +70,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onDestroy() {
         super.onDestroy();
         //反注册
-        NetworkManager.getDefault().unRegisterAllObserver();
+        NetworkManager.getDefault().unRegisterObserver(this);
     }
 }

@@ -2,14 +2,17 @@ apply plugin: 'com.android.library'
 apply plugin: 'com.jfrog.bintray'
 apply plugin: 'com.github.dcendents.android-maven'
 
+
+def versionS="1.3"
+
 android {
     compileSdkVersion 28
 
     defaultConfig {
         minSdkVersion 16
         targetSdkVersion 28
-        versionCode 3
-        versionName "1.2"
+        versionCode 4
+        versionName versionS
     }
 
     buildTypes {
@@ -69,7 +72,7 @@ def gitUrl = 'https://github.com/zhxhcoder/XHttp.git'   //github仓库的地址
 Properties properties = new Properties()
 properties.load(project.rootProject.file('local.properties').newDataInputStream())
 
-version = "1.2"//version
+version = versionS//version
 group = "com.zhxh"//groupId
 bintray {
     user = properties.getProperty("bintray.user")
@@ -84,10 +87,10 @@ bintray {
         publish = true // 是否是公开项目。
 
         version {
-            name = '1.2'//版本号
+            name = versionS//版本号
             desc = 'XHttp,http toolkit for android development'//版本描述
             released = new Date()
-            vcsTag = 'v1.2'
+            vcsTag = 'v'+versionS
             attributes = ['gradle-plugin': 'com.use.less:com.use.less.gradle:gradle-useless-plugin']
         }
     }
