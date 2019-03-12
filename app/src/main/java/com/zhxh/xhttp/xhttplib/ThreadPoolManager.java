@@ -14,9 +14,9 @@ public class ThreadPoolManager {
 
     public static ThreadPoolManager getInstance() {
 
-        if (instance != null) {
+        if (instance == null) {
             synchronized (ThreadPoolManager.class) {
-                if (instance != null) {
+                if (instance == null) {
                     instance = new ThreadPoolManager();
                 }
             }
@@ -43,14 +43,16 @@ public class ThreadPoolManager {
     private ThreadPoolExecutor poolExecutor;
 
     private ThreadPoolManager() {
-
         //初始化时
         poolExecutor = new ThreadPoolExecutor(3, 10, 15, TimeUnit.SECONDS, new ArrayBlockingQueue<Runnable>(4), new RejectedExecutionHandler() {
             @Override
             public void rejectedExecution(Runnable runnable, ThreadPoolExecutor threadPoolExecutor) {
 
+                addTask(runnable);
             }
         });
+
+        poolExecutor.execute(daemonTask);
     }
 
     //创建守护进程 将队列与线程池关联,获取队列中的任务
