@@ -56,7 +56,7 @@ public class ThreadPoolManager {
         });
 
         poolExecutor.execute(daemonTask);
-        poolExecutor.execute(deleyTask);
+        poolExecutor.execute(delayTask);
     }
 
     //创建延迟队列
@@ -95,7 +95,7 @@ public class ThreadPoolManager {
     //创建重试进程，不停获取延迟队列
 
 
-    public Runnable deleyTask = new Runnable() {
+    public Runnable delayTask = new Runnable() {
         @Override
         public void run() {
             HttpTask httpTask = null;
@@ -108,7 +108,7 @@ public class ThreadPoolManager {
                             poolExecutor.execute(httpTask);
                             httpTask.setRetryCount(httpTask.getRetryCount() + 1);
 
-                            Log.e("xhttp-", httpTask.getRetryCount() + "次"+System.currentTimeMillis());
+                            Log.e("xhttp-", httpTask.getRetryCount() + "次" + System.currentTimeMillis());
                         } else {
                             Log.e("xhttp-", "重试仍失败，放弃");
                         }
