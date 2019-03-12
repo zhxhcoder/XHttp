@@ -1,6 +1,9 @@
 package com.zhxh.xhttp.xhttplib;
 
+import android.util.Log;
+
 import java.util.concurrent.ArrayBlockingQueue;
+import java.util.concurrent.DelayQueue;
 import java.util.concurrent.LinkedBlockingDeque;
 import java.util.concurrent.RejectedExecutionHandler;
 import java.util.concurrent.ThreadPoolExecutor;
@@ -53,7 +56,21 @@ public class ThreadPoolManager {
         });
 
         poolExecutor.execute(daemonTask);
+        poolExecutor.execute(deleyTask);
     }
+
+    //创建延迟队列
+
+    private DelayQueue<HttpTask> mDelayQueue = new DelayQueue<>();
+
+
+    public void addDelayTask(HttpTask httpTask) {
+        if (httpTask != null) {
+            httpTask.setDelayTime(5000);
+            mDelayQueue.offer(httpTask);
+        }
+    }
+
 
     //创建守护进程 将队列与线程池关联,获取队列中的任务
 
@@ -75,4 +92,33 @@ public class ThreadPoolManager {
         }
     };
 
+    //创建重试进程，不停获取延迟队列
+
+
+    public Runnable deleyTask = new Runnable() {
+        @Override
+        public void run() {
+            HttpTask httpTask = null;
+            while (true) {
+                if (mDelayQueue != null && !mDelayQueue.isEmpty()) {
+                    try {
+
+                        httpTask = mDelayQueue.take();
+                        if (httpTask.getRetryCount() < 3) {
+                            poolExecutor.execute(httpTask);
+                            httpTask.setRetryCount(httpTask.getRetryCount() + 1);
+
+                            Log.e("xhttp-", httpTask.getRetryCount() + "次"+System.currentTimeMillis());
+                        } else {
+                            Log.e("xhttp-", "重试仍失败，放弃");
+                        }
+
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                    //poolExecutor.execute(httpTask);
+                }
+            }
+        }
+    };
 }

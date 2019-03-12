@@ -65,7 +65,7 @@ public class JsonHttpRequest implements IHttpRequest {
 
 
         } catch (IOException e) {
-            e.printStackTrace();
+            throw new RuntimeException("请求失败");
         } finally {
             connection.disconnect();
         }
