@@ -1,4 +1,4 @@
-package com.zhxh.xhttp.xhttplib;
+package com.zhxh.xhttplib;
 
 import java.io.BufferedOutputStream;
 import java.io.IOException;

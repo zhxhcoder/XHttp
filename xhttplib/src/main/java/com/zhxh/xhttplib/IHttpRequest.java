@@ -1,4 +1,4 @@
-package com.zhxh.xhttp.xhttplib;
+package com.zhxh.xhttplib;
 
 public interface IHttpRequest {
     void setUrl(String url);

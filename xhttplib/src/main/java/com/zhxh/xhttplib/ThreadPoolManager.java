@@ -1,4 +1,4 @@
-package com.zhxh.xhttp.xhttplib;
+package com.zhxh.xhttplib;
 
 import android.util.Log;
 
@@ -110,7 +110,7 @@ public class ThreadPoolManager {
 
                             Log.e("xhttp-", httpTask.getRetryCount() + "次" + System.currentTimeMillis());
                         } else {
-                            Log.e("xhttp-", "重试仍失败，放弃");
+                            Log.e("xhttp-", "重试仍失败，放弃重试");
                         }
 
                     } catch (InterruptedException e) {

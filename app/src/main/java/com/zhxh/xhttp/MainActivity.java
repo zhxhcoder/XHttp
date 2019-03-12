@@ -5,8 +5,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.widget.TextView;
 
 import com.zhxh.xhttp.bean.BaseResponse;
-import com.zhxh.xhttp.xhttplib.IJsonDataListener;
-import com.zhxh.xhttp.xhttplib.Xhttp;
+import com.zhxh.xhttplib.IJsonDataListener;
+import com.zhxh.xhttplib.Xhttp;
 
 public class MainActivity extends AppCompatActivity {
 

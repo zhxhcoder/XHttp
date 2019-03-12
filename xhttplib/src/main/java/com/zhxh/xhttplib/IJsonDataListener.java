@@ -1,6 +1,4 @@
-package com.zhxh.xhttp.xhttplib;
-
-import java.io.InputStream;
+package com.zhxh.xhttplib;
 
 public interface IJsonDataListener<T> {
 
