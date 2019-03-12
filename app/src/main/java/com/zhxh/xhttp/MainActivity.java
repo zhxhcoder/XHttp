@@ -2,16 +2,18 @@ package com.zhxh.xhttp;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.widget.TextView;
 
 import com.zhxh.xhttp.bean.BaseResponse;
 import com.zhxh.xhttplib.IJsonDataListener;
 import com.zhxh.xhttplib.Xhttp;
 import com.zhxh.xnetlib.NetworkManager;
-import com.zhxh.xnetlib.listener.NetworkListener;
+import com.zhxh.xnetlib.annotation.Network;
 import com.zhxh.xnetlib.type.NetType;
+import com.zhxh.xnetlib.utlis.Constants;
 
-public class MainActivity extends AppCompatActivity implements NetworkListener {
+public class MainActivity extends AppCompatActivity {
 
     private TextView content;
     private TextView netState;
@@ -23,10 +25,8 @@ public class MainActivity extends AppCompatActivity implements NetworkListener {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        NetworkManager.getDefault().registerObserver(this);
 
-
-        NetworkManager.getDefault().init(getApplication());
-        NetworkManager.getDefault().setListener(this);
 
         content = findViewById(R.id.content);
         netState = findViewById(R.id.netState);
@@ -49,13 +49,27 @@ public class MainActivity extends AppCompatActivity implements NetworkListener {
     }
 
 
-    @Override
-    public void onConnect(NetType netType) {
-        netState.append("连接成功 " + netType.name() + "\n");
+    @Network(netType = NetType.AUTO)
+    public void network(NetType netType) {
+        switch (netType) {
+            case WIFI:
+                Log.e(Constants.TAG, "MainActivity网络类型WiFi");
+                break;
+            case CMNET:
+            case CMWAP:
+                Log.e(Constants.TAG, "MainActivity网络连接成功，网络类型"+netType.name());
+                break;
+            case NONE:
+                Log.e(Constants.TAG, "MainActivity网络无连接");
+                break;
+        }
     }
 
+
     @Override
-    public void onDisConnect() {
-        netState.append("连接失败\n");
+    protected void onDestroy() {
+        super.onDestroy();
+        //反注册
+        NetworkManager.getDefault().unRegisterAllObserver();
     }
 }

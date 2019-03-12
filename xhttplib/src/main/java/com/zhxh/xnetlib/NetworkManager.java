@@ -3,7 +3,6 @@ package com.zhxh.xnetlib;
 import android.app.Application;
 import android.content.IntentFilter;
 
-import com.zhxh.xnetlib.listener.NetworkListener;
 import com.zhxh.xnetlib.utlis.Constants;
 
 public class NetworkManager {
@@ -15,7 +14,7 @@ public class NetworkManager {
 
     private NetworkManager() {
 
-        receiver=new NetStateReceiver();
+        receiver = new NetStateReceiver();
     }
 
     public static NetworkManager getDefault() {
@@ -28,11 +27,6 @@ public class NetworkManager {
         }
 
         return instance;
-    }
-
-
-    public void setListener(NetworkListener listener) {
-        receiver.setListener(listener);
     }
 
 
@@ -56,5 +50,19 @@ public class NetworkManager {
         }
 
         return application;
+    }
+
+    public void unRegisterObserver(Object obj) {
+        receiver.unRegisterObserver(obj);
+
+    }
+
+    public void unRegisterAllObserver() {
+        receiver.unRegisterAllObserver();
+    }
+
+    public void registerObserver(Object obj) {
+
+        receiver.registerObserver(obj);
     }
 }
