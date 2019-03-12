@@ -5,13 +5,14 @@ import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 
+import com.zhxh.xnetlib.NetworkManager;
 import com.zhxh.xnetlib.type.NetType;
 
 public class NetworkUtils {
 
     @SuppressLint("MissingPermission")
-    public static boolean isNetworkAvailable(Context context) {
-        ConnectivityManager connectManager = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
+    public static boolean isNetworkAvailable() {
+        ConnectivityManager connectManager = (ConnectivityManager) NetworkManager.getDefault().getApplication().getSystemService(Context.CONNECTIVITY_SERVICE);
         if (connectManager == null) {
             return false;
         }
@@ -29,8 +30,8 @@ public class NetworkUtils {
 
 
     @SuppressLint("MissingPermission")
-    public static NetType getNetType(Context context) {
-        ConnectivityManager connectManager = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
+    public static NetType getNetType() {
+        ConnectivityManager connectManager = (ConnectivityManager) NetworkManager.getDefault().getApplication().getSystemService(Context.CONNECTIVITY_SERVICE);
         if (connectManager == null) {
             return NetType.NONE;
         }

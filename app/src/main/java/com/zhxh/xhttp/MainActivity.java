@@ -7,6 +7,7 @@ import android.widget.TextView;
 import com.zhxh.xhttp.bean.BaseResponse;
 import com.zhxh.xhttplib.IJsonDataListener;
 import com.zhxh.xhttplib.Xhttp;
+import com.zhxh.xnetlib.NetworkManager;
 import com.zhxh.xnetlib.listener.NetworkListener;
 import com.zhxh.xnetlib.type.NetType;
 
@@ -22,6 +23,10 @@ public class MainActivity extends AppCompatActivity implements NetworkListener {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+
+        NetworkManager.getDefault().init(this.getApplication());
+        NetworkManager.getDefault().setListener(this);
 
         content = findViewById(R.id.content);
         netState = findViewById(R.id.netState);

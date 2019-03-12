@@ -35,13 +35,12 @@ public class NetStateReceiver extends BroadcastReceiver {
         if (intent.getAction().equalsIgnoreCase(Constants.ANDROID_NET_CHANGE_ACTION)) {
             Log.e(Constants.TAG, "网络改变");
 
-            netType = NetworkUtils.getNetType(context);
+            netType = NetworkUtils.getNetType();
 
-            if (NetworkUtils.isNetworkAvailable(context)) {
+            if (NetworkUtils.isNetworkAvailable()) {
 
                 listener.onConnect(netType);
             } else {
-
                 listener.onDisConnect();
             }
 
