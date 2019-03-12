@@ -1,9 +1,8 @@
 package com.zhxh.xnetlib;
 
 import android.app.Application;
-import android.content.IntentFilter;
-
-import com.zhxh.xnetlib.utlis.Constants;
+import android.net.ConnectivityManager;
+import android.os.Build;
 
 public class NetworkManager {
 
@@ -35,10 +34,18 @@ public class NetworkManager {
     public void init(Application application) {
         this.application = application;
 
-        //注册
-        IntentFilter filter = new IntentFilter();
-        filter.addAction(Constants.ANDROID_NET_CHANGE_ACTION);
-        application.registerReceiver(receiver, filter);
+        //第一种：注册广播的形式
+        //IntentFilter filter = new IntentFilter();
+        //filter.addAction(Constants.ANDROID_NET_CHANGE_ACTION);
+        //application.registerReceiver(receiver, filter);
+
+        //第二种方式监听，不通过广播
+
+        if (Build.VERSION.SDK_INT>=Build.VERSION_CODES.LOLLIPOP) {
+            ConnectivityManager.NetworkCallback networkCallback=new NetworkCallbackImpl();
+
+        }
+
 
     }
 
