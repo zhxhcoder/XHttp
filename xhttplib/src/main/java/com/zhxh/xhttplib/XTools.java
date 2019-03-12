@@ -12,7 +12,7 @@ public class XTools {
     /**
      * 判断SD卡是否可用
      *
-     * @return
+     * @return 是否可用
      */
     public static boolean isSDCardMounted() {
         try {
