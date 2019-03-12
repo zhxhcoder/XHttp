@@ -53,7 +53,6 @@ public class ThreadPoolManager {
         });
     }
 
-
     //创建守护进程 将队列与线程池关联,获取队列中的任务
 
     public Runnable daemonTask = new Runnable() {
