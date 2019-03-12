@@ -1,4 +1,4 @@
-package com.zhxh.xhttplib;
+package com.zhxh.xhttp.xhttplib;
 
 public interface IHttpRequest {
 }
