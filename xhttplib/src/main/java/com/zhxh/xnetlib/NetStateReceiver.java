@@ -155,7 +155,7 @@ public class NetStateReceiver extends BroadcastReceiver {
         for (Method method : methods) {
             Network network = method.getAnnotation(Network.class);
 
-            if (network==null) {//过滤
+            if (network == null) {//过滤
                 continue;
             }
 

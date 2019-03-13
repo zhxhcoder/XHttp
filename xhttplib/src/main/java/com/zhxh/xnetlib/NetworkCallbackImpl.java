@@ -33,7 +33,7 @@ public class NetworkCallbackImpl extends ConnectivityManager.NetworkCallback {
         if (networkCapabilities.hasCapability(NetworkCapabilities.NET_CAPABILITY_VALIDATED)) {
             if (networkCapabilities.hasTransport(NetworkCapabilities.TRANSPORT_WIFI)) {
                 Log.e(Constants.TAG, "onCapabilitiesChanged: wifi");
-            }else {
+            } else {
                 Log.e(Constants.TAG, "onCapabilitiesChanged: cellular");
             }
         }
