@@ -1,5 +1,4 @@
 apply plugin: 'com.android.library'
-apply plugin: 'com.jfrog.bintray'
 apply plugin: 'com.github.dcendents.android-maven'
 
 
@@ -67,66 +66,9 @@ dependencies {
     implementation 'com.alibaba:fastjson:1.2.48'
 }
 
-def siteUrl = 'https://github.com/zhxhcoder/XHttp'   //项目的主页
-def gitUrl = 'https://github.com/zhxhcoder/XHttp.git'   //github仓库的地址
-Properties properties = new Properties()
-properties.load(project.rootProject.file('local.properties').newDataInputStream())
-
 version = versionS//version
 group = "com.zhxh"//groupId
-bintray {
-    user = properties.getProperty("bintray.user")
-    key = properties.getProperty("bintray.apikey")
-    pkg {
-        repo = 'android'//创建的仓库名字
-        name = 'XHttp'//packageName
-        websiteUrl = siteUrl
-        vcsUrl = gitUrl
-        licenses = ['Apache-2.0']//创建仓库时选择的license type
-        userOrg = 'zhxh' //自己bintray创建的organization名称
-        publish = true // 是否是公开项目。
 
-        version {
-            name = versionS//版本号
-            desc = 'XHttp,http toolkit for android development'//版本描述
-            released = new Date()
-            vcsTag = 'v'+versionS
-            attributes = ['gradle-plugin': 'com.use.less:com.use.less.gradle:gradle-useless-plugin']
-        }
-    }
-    configurations = ['archives']
-}
-install {
-    repositories.mavenInstaller {
-        pom {
-            project {
-                packaging 'aar'
-                //项目描述
-                description 'XHttp,http toolkit for android development'
-                url siteUrl
-                // 填写开源协议
-                licenses {
-                    license {
-                        name 'Apache-2.0'
-                        url ' http://www.apache.org/licenses/LICENSE-2.0'
-                    }
-                }
-                developers {
-                    developer {
-                        id 'geekcoder'
-                        //填写邮件地址
-                        email 'zhxhcoder@gmail.com'
-                    }
-                }
-                scm {
-                    connection gitUrl
-                    developerConnection gitUrl
-                    url siteUrl
-                }
-            }
-        }
-    }
-}
 //打包源码
 task sourcesJar(type: Jar) {
     from android.sourceSets.main.java.srcDirs
