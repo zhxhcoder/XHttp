@@ -1,2 +1,4 @@
 # XHttp
-XHttp,http toolkit for android development
+自己封装的网络请求库，支持并发，缓存，重试等机制；
+
+也可通过注解的方式监听网络
