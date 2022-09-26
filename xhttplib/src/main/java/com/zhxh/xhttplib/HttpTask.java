@@ -9,7 +9,6 @@ import java.util.concurrent.Delayed;
 import java.util.concurrent.TimeUnit;
 
 public class HttpTask<T> implements Runnable, Delayed {
-
     IHttpRequest httpRequest;
 
     public HttpTask(String url, T requestData, IHttpRequest httpRequest, CallbackListener listener) {

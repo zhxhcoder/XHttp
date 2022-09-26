@@ -1,7 +1,6 @@
 package com.zhxh.xhttplib;
 
 public class Xhttp {
-
     public static <T, R> void sendJsonRequest(String url, T requestData, Class<R> response, IJsonDataListener listener) {
         //请求
         IHttpRequest httpRequest = new JsonHttpRequest();
